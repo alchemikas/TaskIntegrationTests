@@ -75,7 +75,7 @@ namespace Product.Api.IntegrationTest
         public async Task WhenCreatingProductWithoutName_ThenBadRequestIsReturned()
         {
             CreateProduct productModel = ProductModels.GetCreateModel();
-            productModel.Name = String.Empty;
+            productModel.Name = string.Empty;
 
             ApiResponse<ViewProduct> createResponse = await _productApiClient.Create(productModel);
 
@@ -110,6 +110,18 @@ namespace Product.Api.IntegrationTest
             Assert.IsNull(apiResponse.Response.Photo);
 
             _productIdToDelete = apiResponse.Response.Id;
+        }
+
+        [Test]
+        public async Task WhenCreatingProductWithInvalidImageExtension_ThenBadRequestIsReturned()
+        {
+            CreateProduct productModel = ProductModels.GetCreateModel();
+            productModel.Photo.Title = "imageWithBadExtension.tif";
+
+            ApiResponse<ViewProduct> apiResponse = await _productApiClient.Create(productModel);
+
+            Assert.That(apiResponse.HttpStatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+            Assert.IsTrue(apiResponse.Response.Errors.Any());
         }
     }
 }

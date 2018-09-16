@@ -20,7 +20,7 @@ namespace Product.Api.IntegrationTest
         }
 
         CreateProduct productModel = ProductModels.GetCreateModel();
-        private int _createdProductId = 0;
+        private int _createdProductId = default(int);
 
         [SetUp]
         public async Task Setup()
@@ -32,7 +32,10 @@ namespace Product.Api.IntegrationTest
         [TearDown]
         public async Task TearDown()
         {
-            await _productApiClient.Delete(_createdProductId);
+            if (_createdProductId != default(int))
+            {
+                await _productApiClient.Delete(_createdProductId);
+            }
         }
 
         [Test]

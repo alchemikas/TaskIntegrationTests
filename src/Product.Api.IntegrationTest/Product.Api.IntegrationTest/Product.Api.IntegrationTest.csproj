@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <Reference Include="Product.Api.Client">
-      <HintPath>..\..\..\..\..\..\Task\src\Product.Api.Client\bin\Debug\netcoreapp2.1\Product.Api.Client.dll</HintPath>
+      <HintPath>..\..\..\..\Task\src\Product.Api.Client\bin\Debug\netcoreapp2.1\Product.Api.Client.dll</HintPath>
     </Reference>
     <Reference Include="Product.Api.Contract">
       <HintPath>..\..\..\..\..\..\Task\src\ProductContract\bin\Debug\netcoreapp2.1\Product.Api.Contract.dll</HintPath>
